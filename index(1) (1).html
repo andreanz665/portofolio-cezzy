@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website personal Cezzy — Security Researcher dan Bug Hunter.">
+  <title>Cezzy — Security Researcher</title>
+  <style>
+    :root{
+      --bg:#060b14;
+      --bg2:#0b1220;
+      --card:rgba(13,22,38,.72);
+      --line:rgba(255,255,255,.10);
+      --text:#eef5ff;
+      --muted:#9caec5;
+      --blue:#2388ff;
+      --cyan:#36d9ff;
+      --gold:#f6c64a;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 85% 10%,rgba(35,136,255,.16),transparent 28%),
+        radial-gradient(circle at 10% 45%,rgba(54,217,255,.08),transparent 25%),
+        linear-gradient(180deg,var(--bg),var(--bg2) 55%,var(--bg));
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,92%);margin:auto}
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(6,11,20,.70);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:22px;font-weight:900;letter-spacing:.08em}
+    .brand span{color:var(--cyan)}
+    .links{display:flex;gap:26px;color:#b9c8dc;font-size:14px}
+    .links a:hover{color:#fff}
+    .hero{min-height:100vh;display:grid;place-items:center;padding:120px 0 70px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+    .eyebrow{
+      display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border:1px solid rgba(54,217,255,.25);
+      background:rgba(54,217,255,.07);border-radius:999px;color:#bdefff;font-size:13px;margin-bottom:22px
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:#42e89c;box-shadow:0 0 14px #42e89c}
+    h1{font-size:clamp(52px,8vw,96px);line-height:.95;letter-spacing:-.06em;margin-bottom:24px}
+    h1 .accent{color:var(--cyan)}
+    .lead{font-size:clamp(17px,2vw,21px);color:#b7c7da;max-width:650px}
+    .buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .btn{padding:13px 19px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:14px}
+    .btn.primary{background:linear-gradient(135deg,#1683ff,#36d9ff);color:#04101d;border:none}
+    .btn:hover{transform:translateY(-2px)}
+    .profile-card{
+      min-height:430px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,rgba(22,38,65,.82),rgba(8,14,25,.86));
+      box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden
+    }
+    .profile-card:before{
+      content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-100px;
+      background:rgba(35,136,255,.20);filter:blur(10px)
+    }
+    .terminal{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#9ec1df}
+    .terminal .green{color:#56e39a}.terminal .blue{color:#4cbcff}.terminal .gold{color:#f6c64a}
+    .identity{margin-top:70px}
+    .identity h2{font-size:42px;letter-spacing:-.04em}
+    .identity p{color:var(--muted);margin-top:6px}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:30px}
+    .stat{padding:16px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025)}
+    .stat b{display:block;font-size:20px}.stat small{color:var(--muted)}
+    section{padding:95px 0}
+    .section-title{margin-bottom:38px}
+    .section-title small{color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.18em}
+    .section-title h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.04em;margin-top:7px}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .card{border:1px solid var(--line);background:var(--card);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+    .card h3{font-size:21px;margin-bottom:12px}.card p{color:var(--muted)}
+    .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .tag{padding:8px 12px;border-radius:999px;background:rgba(35,136,255,.09);border:1px solid rgba(35,136,255,.2);color:#b8d8ff;font-size:13px}
+    .achievement{
+      display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center;
+      border:1px solid rgba(246,198,74,.22);background:linear-gradient(135deg,rgba(246,198,74,.06),rgba(35,136,255,.05));
+      padding:30px;border-radius:25px
+    }
+    .achievement h3{font-size:30px;margin:8px 0 12px}
+    .achievement p{color:var(--muted)}
+    .badge{display:inline-block;color:#201700;background:var(--gold);font-weight:900;padding:8px 12px;border-radius:8px;font-size:12px;letter-spacing:.06em}
+    .certificate-wrap{margin-top:25px}
+    .certificate{
+      width:100%;display:block;border-radius:15px;border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 20px 55px rgba(0,0,0,.4);cursor:zoom-in
+    }
+    .caption{font-size:13px;color:#8295ad;text-align:center;margin-top:10px}
+    .contact{
+      text-align:center;padding:55px 25px;border-radius:28px;border:1px solid var(--line);
+      background:linear-gradient(135deg,rgba(35,136,255,.11),rgba(54,217,255,.04))
+    }
+    .contact h2{font-size:clamp(32px,5vw,52px);letter-spacing:-.04em}
+    .contact p{color:var(--muted);max-width:650px;margin:12px auto 25px}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#71839a;font-size:13px}
+    .modal{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:50;
+      align-items:center;justify-content:center;padding:25px
+    }
+    .modal.open{display:flex}.modal img{max-width:95vw;max-height:90vh;border-radius:12px}
+    .close{position:absolute;top:18px;right:22px;color:#fff;font-size:36px;cursor:pointer}
+    @media(max-width:800px){
+      .links{display:none}.hero-grid,.about-grid,.achievement{grid-template-columns:1fr}
+      .hero{padding-top:110px}.profile-card{min-height:360px}
+      section{padding:70px 0}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#home">CEZ<span>ZY</span></a>
+      <div class="links">
+        <a href="#about">Tentang</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#achievement">Prestasi</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Security Researcher • Bug Hunter</div>
+          <h1>Hi, I'm <span class="accent">Cezzy.</span></h1>
+          <p class="lead">Saya berfokus pada keamanan siber, riset kerentanan, dan membantu meningkatkan keamanan sistem melalui pendekatan yang bertanggung jawab.</p>
+          <div class="buttons">
+            <a class="btn primary" href="#achievement">Lihat Sertifikat</a>
+            <a class="btn" href="#about">Tentang Saya</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="terminal">
+            <div><span class="green">●</span> secure-session</div>
+            <br>
+            <div><span class="blue">user</span>@cezzy:~$ whoami</div>
+            <div class="gold">Cezzy</div>
+            <br>
+            <div><span class="blue">user</span>@cezzy:~$ role</div>
+            <div>Security Researcher / Bug Hunter</div>
+            <br>
+            <div><span class="blue">user</span>@cezzy:~$ mission</div>
+            <div>find • report • improve</div>
+          </div>
+          <div class="identity">
+            <h2>Cezzy</h2>
+            <p>Cyber Security Enthusiast</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>03</b><small>Sertifikat Apresiasi</small></div>
+            <div class="stat"><b>2026</b><small>Achievement</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <small>01 — Profile</small>
+          <h2>Tentang Saya</h2>
+        </div>
+        <div class="about-grid">
+          <div class="card">
+            <h3>Siapa Saya?</h3>
+            <p>Saya Andrean Lebih di kenal Cezzy, seorang security researcher yang tertarik pada keamanan aplikasi dan sistem. Saya senang melakukan riset, menemukan potensi kerentanan, kemudian menyampaikannya secara bertanggung jawab agar dapat diperbaiki.</p>
+          </div>
+          <div class="card" id="skills">
+            <h3>Fokus Keahlian</h3>
+            <p>Area yang menjadi bagian dari perjalanan belajar dan riset saya:</p>
+            <div class="tags">
+              <span class="tag">Web Security</span>
+              <span class="tag">Vulnerability Research</span>
+              <span class="tag">Bug Hunting</span>
+              <span class="tag">Security Testing</span>
+              <span class="tag">OSINT</span>
+              <span class="tag">Cyber Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievement">
+      <div class="container">
+        <div class="section-title">
+          <small>02 — Achievement</small>
+          <h2>Sertifikat Apresiasi</h2>
+        </div>
+        <div class="achievement">
+          <div>
+            <span class="badge">APRESIASI • 2026</span>
+            <h3>Kontribusi Keamanan Siber</h3>
+            <p>Sertifikat apresiasi atas kontribusi dalam menemukan dan melaporkan kerentanan sistem atau aplikasi milik Kementerian Pekerjaan Umum.</p>
+            <p style="margin-top:15px"><strong>Nama:</strong> Cezzy<br><strong>Tanggal:</strong> 17 September 2026<br><strong>Lokasi:</strong> Bekasi</p>
+          </div>
+          <div class="certificate-wrap">
+            <img class="certificate" src="https://cdn.phototourl.com/member/2026-09-29-c4945af0-4739-403f-9c32-1d3ba4cb6a15.jpg"
+              <div
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievement">
+      <div class="container">
+        <div class="section-title">
+          <small>03 — Achievement</small>
+          <h2>Sertifikat Apresiasi</h2>
+        </div>
+        <div class="achievement">
+          <div>
+            <span class="badge">APRESIASI • 2026</span>
+            <h3>Kontribusi Keamanan Siber</h3>
+            <p>Sertifikat apresiasi atas kontribusi dalam menemukan BUG HUNTER 
+              dan melaporkan kerentanan sistem atau aplikasi milik Kementerian Komunikasi dan Informatika.</p>
+            <p style="margin-top:15px"><strong>Nama:</strong> Cezzy<br><strong>Tanggal:</strong> 20 September 2026<br><strong>Lokasi:</strong> Jakarta</p>
+          </div>
+          <div class="certificate-wrap">
+            <img class="certificate" src="https://cdn.phototourl.com/member/2026-09-29-d9502799-aa97-43d1-9d79-943c1570bb7f.jpg"
+              <div
+          </div>
+        </div>
+      </div>
+    </section>
+    
+<section id="achievement">
+      <div class="container">
+        <div class="section-title">
+          <small>02 — Achievement</small>
+          <h2>Sertifikat Apresiasi</h2>
+        </div>
+        <div class="achievement">
+          <div>
+            <span class="badge">APRESIASI • 2026</span>
+            <h3>Kontribusi Keamanan Siber</h3>
+            <p>Sertifikat apresiasi atas kontribusi dalam menemukan BUG HUNTER dan melaporkan kerentanan sistem atau aplikasi milik Kementerian Komunikasi dan Digital.</p>
+            <p style="margin-top:15px"><strong>Nama:</strong> Cezzy<br><strong>Tanggal:</strong> 20 September 2026<br><strong>Lokasi:</strong> Bekasi</p>
+          </div>
+          <div class="certificate-wrap">
+            <img class="certificate" src="https://cdn.phototourl.com/member/2026-09-29-676a3afc-084d-4b8a-9a50-2dcef7012bfd.jpg"
+              <div
+          </div>
+        </div>
+      </div>
+</section>
+         
+    
+
+            
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <small style="color:var(--cyan);font-weight:800;letter-spacing:.15em">LET'S CONNECT</small>
+          <h2>Bangun keamanan yang lebih baik.</h2>
+          <p>Tambahkan email, GitHub, LinkedIn, atau akun profesional kamu di bagian ini agar pengunjung dapat menghubungi kamu.</p>
+          <div class="buttons" style="justify-content:center">
+            <a class="btn primary" href="andreanz665@gmail.com">Email Saya</a>
+            <a class="btn" href="https://www.instagram.com/cezzyar?stkn=MXF5cmZydnAzYnQ5OA==" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Cezzy. Personal Portfolio • Security Researcher</div>
+  </footer>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img src="sertifikat-apresiasi-cezzy.jpg" alt="Sertifikat Apresiasi Cezzy" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    function openModal(){document.getElementById('modal').classList.add('open')}
+    function closeModal(){document.getElementById('modal').classList.remove('open')}
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal() });
+  </script>
+</body>
+</html>
